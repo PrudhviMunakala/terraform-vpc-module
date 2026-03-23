@@ -174,6 +174,8 @@ resource "aws_route_table_association" "database" {
   route_table_id = aws_route_table.database_rt.id
 }
 
+# peering connection
+
 resource "aws_route" "public_peering" {
   count = var.enable_peering == true ? 1 : 0
   route_table_id            = aws_route_table.public_rt.id
