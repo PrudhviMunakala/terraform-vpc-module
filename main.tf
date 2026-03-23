@@ -34,7 +34,6 @@ resource "aws_subnet" "private" {
   vpc_id     = aws_vpc.main.id
   cidr_block = var.private_subnet_cidr[count.index]
   availability_zone = local.az_names[count.index]
-  map_public_ip_on_launch = false
 
   tags = merge (
     local.common_tags,
@@ -173,8 +172,6 @@ resource "aws_route_table_association" "database" {
   subnet_id      = aws_subnet.database[count.index].id
   route_table_id = aws_route_table.database_rt.id
 }
-
-# peering connection
 
 resource "aws_route" "public_peering" {
   count = var.enable_peering == true ? 1 : 0
