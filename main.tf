@@ -28,6 +28,7 @@ resource "aws_subnet" "public" {
   )
 }
 
+
 # private subnet..
 resource "aws_subnet" "private" {
   count = length(var.private_subnet_cidr)
@@ -43,6 +44,8 @@ resource "aws_subnet" "private" {
     var.private_subnet_tags
   )
 }
+
+
 
 # database subnet..
 resource "aws_subnet" "database" {
